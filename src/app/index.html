@@ -1,0 +1,75 @@
+<!doctype html>
+<html ng-app="myClient">
+
+<head>
+
+    <!-- bower:css -->
+    <!-- run `gulp wiredep` to automaticaly populate bower styles dependencies -->
+    <!-- endbower -->
+
+    <!-- inject:css -->
+    <!-- css files will be automaticaly insert here -->
+    <!-- endinject -->
+    
+</head>
+
+<body ng-controller="MainController">
+    
+    <div class="header">
+
+    </div>
+
+    <div class="main">
+        <div class="container">
+
+            <h1>{{ title }}</h1>
+            
+            <!-- You can use a custom html template with the `data-template` attr -->
+            <div class="panel-group">
+                <button type="button" class="btn btn-lg btn-danger" data-template-url="request.html" data-placement="left" data-animation="am-slide-left" bs-aside="aside" data-container="body">
+                    Send a request<br/>
+                    <small>(RFS request)</small>
+                </button>
+            </div>
+            
+            <br/>
+            
+            <div class="panel-group" ng-model="journey.plan.itineraries.activePanel" role="tablist" aria-multiselectable="true" bs-collapse>
+                <div class="panel panel-default" ng-repeat="panel in journey.plan.itineraries track by $index" data-ng-init="parentIndex = $index">
+                    <div class="panel-heading" role="tab">
+                        <h4 class="panel-title">
+                                    <a bs-collapse-toggle>
+                                      Itinerary
+                                    </a>
+                                </h4>
+                    </div>
+                    <div class="panel-collapse" role="tabpanel" bs-collapse-target>
+                        <div class="panel-body">
+                            <div class="leg" ng-class="{leg_wait: le.type=='WAIT', leg_transit: le.type=='TRANSIT', leg_walk: le.type=='WALK'}" 
+                                 ng-repeat="le in widths[parentIndex] track by $index" ng-style="{ 'width' : le.width + '%' }">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <h2>Available for iPhone and Android.</h2>
+            <img src="https://s3.amazonaws.com/codecademy-content/projects/shutterbugg/app-store.png" width="120px" />
+            <img src="https://s3.amazonaws.com/codecademy-content/projects/shutterbugg/google-play.png" width="110px" />
+        </div>
+    </div>
+
+    <!-- bower:js -->
+    <!-- run `gulp wiredep` to automaticaly populate bower script dependencies -->
+    <!-- endbower -->
+
+    <!-- inject:js -->
+    <!-- js files will be automaticaly insert here -->
+    <!-- endinject -->
+
+</body>

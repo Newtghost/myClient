@@ -1,0 +1,27 @@
+{
+  "name": "myClient",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Tracking client",
+  "devDependencies": {
+    "bower": "^1.3.1",
+    "gulp-angular-filesort": "^1.1.1",
+    "gulp-inject": "^1.5.0",
+    "http-server": "^0.6.1",
+    "shelljs": "^0.2.6"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+    "prestart": "npm install",
+    "start": "http-server -a localhost -p 8000 -c-1",
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "webdriver-manager update"
+  },
+  "dependencies": {
+    "browser-sync": "^2.8.0",
+    "connect-modrewrite": "^0.8.1",
+    "del": "^1.2.0",
+    "util": "^0.10.3",
+    "wiredep": "^2.2.2"
+  }
+}

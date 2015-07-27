@@ -1,0 +1,5 @@
+.bowerrc
+.jshintrc
+.tmp/
+bower_components/
+node_modules/

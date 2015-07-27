@@ -1,0 +1,24 @@
+<div data-ng-if="field.type === 'String'">
+    <input class="form-control" data-ng-model="field.value" type="text"></input>
+</div>
+<div data-ng-if="['int', 'Integer'].indexOf(field.type) !== -1">
+    <input class="form-control" data-ng-model="field.value" type="number"></input>
+</div>
+<div data-ng-if="['Double', 'long'].indexOf(field.type) !== -1">
+    <input class="form-control" data-ng-model="field.value" type="number" step="0.01"></input>
+</div>
+<div data-ng-if="field.type === 'boolean'">
+    <input id="{{ field.name }}" class="ios-toggle" data-ng-model="field.value" type="checkbox"></input>
+    <label for="{{ field.name }}"></label>
+</div>
+<div data-ng-if="field.possibleValue !== null">
+    <select class="form-control" data-ng-model="field.value">
+        <option data-ng-repeat="pv in field.possibleValue" value="{{ pv }}">{{ pv }}</option>
+    </select>
+</div>
+<div data-ng-if="field.type === 'LocalDate'">
+    <input class="form-control" bs-datepicker data-ng-model="field.value" data-autoclose="1" data-date-format="yyyy-MM-dd"></input>
+</div>
+<div data-ng-if="field.type === 'LocalTime'">
+    <input class="form-control" data-ng-model="field.value" data-time-format="HH:mm" data-time-type="number" data-min-time="6:00" data-max-time="23:30" data-autoclose="1" bs-timepicker></input>
+</div>

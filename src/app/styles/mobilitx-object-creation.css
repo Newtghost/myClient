@@ -1,0 +1,106 @@
+/* General */
+
+.mobilitx-data-object-edition-creator li {
+    text-transform: none;
+    list-style-type: none;
+}
+
+.mobilitx-data-object-edition-creator .panel-body,
+.mobilitx-data-object-edition-creator .panel-body {
+    background-color: white;
+}
+
+
+/* Creation Progress */
+
+.mobilitx-data-object-edition-creator .creation-progress {
+    padding: 15px;
+    background-color: #52DA9C;
+    width: 100%;
+}
+
+.mobilitx-data-object-edition-creator .creation-progress li * {
+    font-weight: bold;
+    font-size: 18px;
+    color: white !important
+}
+
+.mobilitx-data-object-edition-creator .creation-progress li + li:before {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 15px;
+    color: white !important;
+    margin: 0 15px;
+}
+
+.mobilitx-data-object-edition-creator .cancel-creation {
+    background: rgb(255, 234, 234);
+    color: rgb(202, 84, 84);
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+
+/* Creation form */
+
+.mobilitx-data-object-edition-creator .object-creation-form {
+    padding-right: 10px;
+    height: calc(100% - 100px);
+    overflow: auto;
+}
+
+.mobilitx-data-object-edition-creator .form-displayer {
+    height: 50px;
+}
+
+.mobilitx-data-object-edition-creator .form-displayer.active {
+    background-color: rgb(192, 225, 252);
+    box-shadow: 0 0 20px -6px rgb(102, 175, 233);
+}
+
+.mobilitx-data-object-edition-creator .form-displayer button {
+    height: 50px;
+}
+
+
+/* Existing entities table */
+
+.mobilitx-data-object-edition-creator .existing-entities-list {
+    margin: 0;
+    padding: 0;
+}
+
+.mobilitx-data-object-edition-creator .existing-entities-list.disabled {
+    opacity: .2;
+}
+
+.mobilitx-data-object-edition-creator .existing-entities-list li {
+    margin: 10px;
+    height: 150px;
+    padding: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    border: solid 7px rgb(255, 242, 222);
+    background-color: rgb(255, 255, 255);
+}
+
+.mobilitx-data-object-edition-creator .existing-entities-list li.checked {
+    border: solid 7px rgba(56, 168, 104, 1);
+    background-color: rgb(230, 250, 239);
+}
+
+.mobilitx-data-object-edition-creator .create-entity-button {
+    border-color: rgb(255, 172, 172) !important;
+    line-height: 50px;
+    background-color: rgb(255, 243, 243);
+    overflow: hidden;
+    position: relative;
+}
+
+.mobilitx-data-object-edition-creator .create-entity-button:hover {
+    opacity: .5
+}
+
+.mobilitx-data-object-edition-creator .existing-entities-list li .existing-entity-description {
+    color: silver
+}
