@@ -1,0 +1,20 @@
+<div class="popover">
+    <div class="arrow"></div>
+    <h3 class="popover-title">Leg of type {{ le.type }}</h3>
+    <div data-ng-if="le.type === 'WAIT'" class="popover-content">
+        <div>Wait for {{ (le.duration/60000) | number:0 }} min</div>
+    </div>
+    <div data-ng-if="le.type === 'WALK'" class="popover-content">
+        <div>From: {{ le.leg.from.name }}</div>
+        <div>To: {{ le.leg.to.name }}</div>
+        <div>Distance: {{ le.leg.distance | number:0 }} meters</div>
+        <div>Duration: {{ ((le.leg.endTime-le.leg.startTime)/60000) | number:0 }} min</div>
+    </div>
+    <div data-ng-if="le.type === 'TRANSIT'" class="popover-content">
+        <div>From: {{ le.leg.from.name }}</div>
+        <div>To: {{ le.leg.to.name }}</div>
+        <div>Route Id: {{ le.leg.routeId }}</div>
+        <div>Trip Id: {{ le.leg.tripId }}</div>
+        <div>Duration: {{ ((le.leg.endTime-le.leg.startTime)/60000) | number:0 }} min</div>
+    </div>
+</div>

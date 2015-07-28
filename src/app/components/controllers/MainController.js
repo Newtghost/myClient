@@ -17,8 +17,6 @@
             
             $scope.timeOffset = new Date().getTimezoneOffset();
 
-            $scope.widths = [];
-            
             $scope.fields = [
                 {
                     name: 'Time',
@@ -64,23 +62,29 @@
                     $scope.journey = data;
                     $scope.journey.plan.itineraries.activePanel = 0;
                 
+                    $scope.widths = [];
                     for (i = 0; i < $scope.journey.plan.itineraries.length; i += 1) {
                         itinerary = $scope.journey.plan.itineraries[i];
                         totalDuration = itinerary.legs[itinerary.legs.length - 1].endTime - itinerary.legs[0].startTime + 100000; /* Margin */
-                        $scope.widths[i] = [];
+                        $scope.widths[i] = {};
+                        $scope.widths[i].title = 'Itinerary of ' + $filter("number")(totalDuration / 60000, "0") + ' min which starts at ' +
+                            $filter("date")(itinerary.legs[0].startTime + itinerary.legs[0].agencyTimeZoneOffset + $scope.timeOffset * 60000, "HH:mm:ss") +
+                            ' and arrives at ' + $filter("date")(itinerary.legs[itinerary.legs.length - 1].endTime + itinerary.legs[itinerary.legs.length - 1].agencyTimeZoneOffset +
+                                                                 $scope.timeOffset * 60000, "HH:mm:ss");
+                        $scope.widths[i].legs = [];
                         previousEnd = -1;
                         for (j = 0, k = 0; j < itinerary.legs.length; j += 1, k += 1) {
                             if (previousEnd > 0 && (itinerary.legs[j].startTime - previousEnd) > 0) {
-                                $scope.widths[i][k] = {};
-                                $scope.widths[i][k].width = ((itinerary.legs[j].startTime - previousEnd) / totalDuration) * 100;
-                                $scope.widths[i][k].type = 'WAIT';
-                                $scope.widths[i][k].leg = null;
+                                $scope.widths[i].legs[k] = {};
+                                $scope.widths[i].legs[k].type = 'WAIT';
+                                $scope.widths[i].legs[k].duration = itinerary.legs[j].startTime - previousEnd;
+                                $scope.widths[i].legs[k].width = ($scope.widths[i].legs[k].duration / totalDuration) * 100;
                                 k += 1;
                             }
-                            $scope.widths[i][k] = {};
-                            $scope.widths[i][k].width = ((itinerary.legs[j].endTime - itinerary.legs[j].startTime) / totalDuration) * 100;
-                            $scope.widths[i][k].type = itinerary.legs[j].mode;
-                            $scope.widths[i][k].leg = itinerary.legs[j];
+                            $scope.widths[i].legs[k] = {};
+                            $scope.widths[i].legs[k].type = itinerary.legs[j].mode;
+                            $scope.widths[i].legs[k].width = ((itinerary.legs[j].endTime - itinerary.legs[j].startTime) / totalDuration) * 100;
+                            $scope.widths[i].legs[k].leg = itinerary.legs[j];
                             previousEnd = itinerary.legs[j].endTime;
                         }
                     }

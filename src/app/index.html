@@ -25,8 +25,9 @@
             <h1>{{ title }}</h1>
             
             <!-- You can use a custom html template with the `data-template` attr -->
-            <div class="panel-group">
-                <button type="button" class="btn btn-lg btn-danger" data-template-url="request.html" data-placement="left" data-animation="am-slide-left" bs-aside="aside" data-container="body">
+            <div class="div-request">
+                <button type="button" class="btn btn-lg btn-danger" data-template-url="request-creation-form.html" 
+                        data-placement="left" data-animation="am-slide-left" bs-aside="aside" data-container="body">
                     Send a request<br/>
                     <small>(RFS request)</small>
                 </button>
@@ -35,18 +36,20 @@
             <br/>
             
             <div class="panel-group" ng-model="journey.plan.itineraries.activePanel" role="tablist" aria-multiselectable="true" bs-collapse>
-                <div class="panel panel-default" ng-repeat="panel in journey.plan.itineraries track by $index" data-ng-init="parentIndex = $index">
+                <div class="panel panel-default" ng-repeat="it in widths">
                     <div class="panel-heading" role="tab">
                         <h4 class="panel-title">
-                                    <a bs-collapse-toggle>
-                                      Itinerary
-                                    </a>
-                                </h4>
+                            <a bs-collapse-toggle>
+                              {{ it.title }}
+                            </a>
+                        </h4>
                     </div>
                     <div class="panel-collapse" role="tabpanel" bs-collapse-target>
                         <div class="panel-body">
-                            <div class="leg" ng-class="{leg_wait: le.type=='WAIT', leg_transit: le.type=='TRANSIT', leg_walk: le.type=='WALK'}" 
-                                 ng-repeat="le in widths[parentIndex] track by $index" ng-style="{ 'width' : le.width + '%' }">
+                            <div class="leg" ng-repeat="le in it.legs track by $index" ng-style="{ 'width' : le.width + '%' }">
+                                <button class="btn btn-leg" ng-class="{leg_wait: le.type=='WAIT', leg_transit: le.type=='TRANSIT', leg_walk: le.type=='WALK'}"
+                                        data-placement="bottom" data-trigger="focus" data-template-url="leg-details.tpl.html"  bs-popover>
+                                </button>
                             </div>
                         </div>
                     </div>

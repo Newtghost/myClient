@@ -69,7 +69,8 @@
 
     /* Pas ouf de cop*/
     gulp.task('html', ['clean'], function () {
-        return gulp.src(paths.src + '/app/request*')
+        return gulp.src([paths.src + '/app/request*',
+                        paths.src + '/app/leg-details.tpl.html'])
             .pipe(gulp.dest(paths.tmp + '/serve/'));
     });
 

@@ -25,8 +25,7 @@ html, body {
 .main h1 {
     color: #F65A5B ;
     font-size: 64px;
-    margin: 0 0 80px 0;
-    padding: 20px 0;
+    margin: 0 0 20px 0;
     line-height: 60px;
 }
 
@@ -98,8 +97,23 @@ html, body {
 .leg_walk {
     background: rgb(255, 215, 94);
 }
+
 .leg {
-    border: solid 1px white;
     height: 100px;
     float: left;
+}
+
+.btn-leg {
+    padding: 0px ;
+    height: 100%;
+    width: 100%;
+}
+
+.btn-leg:hover {
+    background: rgb(108, 237, 255);
+}
+
+.div-request {
+    text-align: right;
+    margin-bottom: 40px;
 }
