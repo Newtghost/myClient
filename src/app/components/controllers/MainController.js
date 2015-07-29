@@ -65,13 +65,14 @@
                     $scope.widths = [];
                     for (i = 0; i < $scope.journey.plan.itineraries.length; i += 1) {
                         itinerary = $scope.journey.plan.itineraries[i];
-                        totalDuration = itinerary.legs[itinerary.legs.length - 1].endTime - itinerary.legs[0].startTime + 100000; /* Margin */
                         $scope.widths[i] = {};
-                        $scope.widths[i].title = 'Itinerary of ' + $filter("number")(totalDuration / 60000, "0") + ' min which starts at ' +
-                            $filter("date")(itinerary.legs[0].startTime + itinerary.legs[0].agencyTimeZoneOffset + $scope.timeOffset * 60000, "HH:mm:ss") +
-                            ' and arrives at ' + $filter("date")(itinerary.legs[itinerary.legs.length - 1].endTime + itinerary.legs[itinerary.legs.length - 1].agencyTimeZoneOffset +
-                                                                 $scope.timeOffset * 60000, "HH:mm:ss");
+                        $scope.widths[i].title = 'Itinerary of ' + $filter("number")(itinerary.duration / 60000, "0") + ' min which starts at ' +
+                            $filter("date")(itinerary.startTime + itinerary.agencyTimeZoneOffset + $scope.timeOffset * 60000, "HH:mm:ss") +
+                            ' and arrives at ' + $filter("date")(itinerary.endTime + itinerary.agencyTimeZoneOffset + $scope.timeOffset * 60000, "HH:mm:ss") +
+                            ' ; walking ' +  $filter("number")(itinerary.walkingDistance, "0") + ' m, waiting for ' + $filter("number")(itinerary.waitingTime / 60000, "0") +
+                            ' min with ' + itinerary.nbTransfers + ' transfers';
                         $scope.widths[i].legs = [];
+                        totalDuration = itinerary.duration + 100000; /* 100000 correspond to a margin */
                         previousEnd = -1;
                         for (j = 0, k = 0; j < itinerary.legs.length; j += 1, k += 1) {
                             if (previousEnd > 0 && (itinerary.legs[j].startTime - previousEnd) > 0) {
